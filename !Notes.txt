@@ -1,0 +1,119 @@
+TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
+---------
+
+    VOCAB
+    -----
+    ROADMAP
+        Longterm vision for a project.
+    BACKLOG
+        A single, emergent, and ordered list of everything required to improve or deliver a product, including features, bug fixes, technical tasks, and research activities
+        PRODUCT BACKLOG
+            Work to be completed generally, waiting to be added to Sprint Backlog
+        SPRINT BACKLOG
+            Work to be completed during current sprint
+    INITIATIVE
+        Groups of related User Stories, which have the following format: "As a [someone], I want to be able to do [something]" when interacting with your application.
+    REQUIREMENTS
+    USER STORIES
+        "As a [someone], I want to be able to do [something]".
+        Features, enhancements, or bug fixes.
+    EPICS
+        Groups of user stories.
+    KANBAN BOARD
+        Visualization of workflow.
+    WORKFLOW
+        3 Columns of levels of completeness for user stories.
+    MINUIMUM VIABLE PRODUCT
+        Defines the bare minimum functionality that end-users would find useful enough to purchase.
+
+
+
+    MODULE 1: Overview of the Software Development Life Cycle (SDLC)
+    ----------------------------------------------------------------
+
+        AGILE VS WATERFALL DEVELOPMENT
+            AGILE is breaking a project into smaller iterations, each delivering value and incorporating feedback from stakeholders.
+            WATERFALL follows a strict sequence, where each phase must be completed before moving to the next, making it less adaptable to changes.
+        
+        TYPES OF AGILE DEVELOPMENT
+            SCRUM
+                Method for managing projects in small steps (sprints).
+                Teams work closely together and adapt as they go.
+                Regular meetings keep everyone on track.
+            KANBAN
+                A visual way to manage work. (Kanban board)
+                Shows what needs to be done, what's being worked on, and what's done.
+                Helps teams work efficiently by limiting how much they do at once.
+            TDD
+                Write tests before writing code.
+                Helps make sure the code works correctly and is easy to change.
+                Encourages developers to test often and fix problems as they go.
+        
+        SCRUM IN-DEPTH
+            Scrum is a type of agile development that prioritizes continuous improvement in cycles of timed "sprints" usually lasting two weeks.
+            https://scrumguides.org/scrum-guide.html
+
+            ROLES
+                Product Owner
+                    Leader of Dev Team.
+                    Manages backlog and priorities.
+                    Helps with blockers.
+                    Interacts with customers.
+                Development Team
+                    Software Engineers.
+                    Generally each one is specialized.
+                Scrum Master
+                    Coaches people how to hold scrum ceremonies.
+
+            ARTIFACTS
+                Product Backlog
+                    User stories prioritized by Product Owner to be added to Sprint Backlog.
+                Sprint Backlog
+                    User stories that team members must complete during current sprint.
+                    Taking ownership of a user story at this point means moving it from backlog to your Scrum Board.
+                Scrum Board
+                    A visual representation of how much progress has been made for all of the user stories in this sprint; this board consists of a column for each stage of completion.
+                Definition of Done / Increment / Sprint Goal
+                    The one or more functionalities that will be demo-able at the end of the sprint, and that are necessary for user stories to progress to the rightmost column in the Scrum Board (this column might be labelled "Done", for example).
+            
+            CEREMONIES
+                Backlog Refinement
+                    Product Owner prioritizes items in Product Backlog to current business needs.
+                Sprint Planning
+                    Teams move items from Product Backlog to Sprint Backlog and flesh them out.
+                Daily Standups / Daily Scrums
+                    Each team member updates team of progress on their user stories.
+                Sprint Review
+                    Demo completed work, incomplete stories are put back in the Product Backlog.
+                Sprint Retrospectives
+                    Team reflects.
+            
+        KANBAN IN-DEPTH
+            Kanban is an agile framework that emphasizes continuous delivery of features, enhancements and bug fixes (rather than releases in fixed cycles as with Scrum), and ensuring visibility of the productivity and capacity of teams.
+            Three Columns
+                Not Started
+                In-progress
+                Done
+            Each column can have a maximum number of tasks or "cards" in them.
+    
+    MODULE 2: Building a Product Roadmap
+    ------------------------------------
+
+        Organizing a Product Roadmap
+            Split into columns with labels that illustrate progression.
+            Examples of tools for Roadmaps include Trello & Jira.
+            https://www.atlassian.com/agile/product-management/product-roadmaps
+            Begins with a Minimum Viable Product initiative.
+
+        Product Backlog
+            After adding initiatives to a Product Roadmap, the Project Manager assigns these initiatives to individual Scrum teams.
+            The Product Owner of a Scrum Team determines the priority of the items therein and oversees Product Backlog Refinement Meetings with the engineers to break each item into smaller scope stories.
+            Product Requirements Document (PRD) explaining each Epic and their purpose/features/functionality.
+            Project Managers prioritize backlog by  "customer priority; urgency of getting feedback; relative implementation difficulty; symbiotic relationships between work items (e.g. B is easier if we do A first)".
+
+    MODULE 3: SPRINT PLANNING
+    -------------------------
+    
+
+
+        
