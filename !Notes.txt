@@ -5,6 +5,8 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
     -----
     ROADMAP
         Longterm vision for a project.
+    SPRINT
+        Usually a two-week stint of accomplishing tasks.
     BACKLOG
         A single, emergent, and ordered list of everything required to improve or deliver a product, including features, bug fixes, technical tasks, and research activities
         PRODUCT BACKLOG
@@ -14,6 +16,8 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
     INITIATIVE
         Groups of related User Stories, which have the following format: "As a [someone], I want to be able to do [something]" when interacting with your application.
     REQUIREMENTS
+    DEPENDENCIES
+        What work requires other work to be done first.
     USER STORIES
         "As a [someone], I want to be able to do [something]".
         Features, enhancements, or bug fixes.
@@ -111,9 +115,36 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
             Product Requirements Document (PRD) explaining each Epic and their purpose/features/functionality.
             Project Managers prioritize backlog by  "customer priority; urgency of getting feedback; relative implementation difficulty; symbiotic relationships between work items (e.g. B is easier if we do A first)".
 
-    MODULE 3: SPRINT PLANNING
+    MODULE 3: Sprint Planning
     -------------------------
-    
+
+        Components of Sprint Planning Sessions
+            Scrum sprints begin with a Sprint Planning Ceremony.
+            Developers take as many stories from the top of the Product Backlog as they think they can finish with a Sprint.
+            They then flesh out the following for each item.
+                - User story
+                    -"As a [someone], I want to be able to [something]"; for example, "As a logged-in user, I want to be able to log out of the application", or "As an admin user, I want to be able to delete user accounts".
+                - Technical Steps
+                    - Outline the tasks that are needed to complete the user story
+                - Story Points
+                    - An estimate of the difficulty of the story in points (usually 1 for pretty easy, 3 for somewhat difficult or laborious, 5 for quite difficult or laborious).
+                - Time Estimate
+                    - Estimate of how long to finish the story.
+                - Assignment
+                    - Which team member will tackle the story.
+                - User Acceptance Criteria
+                    -  The conditions the user story must meet to become acceptable to the end user.
+            Next the engineers figure out Dependencies. Which stories require other stories to be complete before starting.
+            Finally, the engineers collaborate on a Definition of Done, which is a list of conditions that must be met before the work for the Sprint can be considered to be complete.
+            Team members begin work on the issues they were assigned, and they advance their stories on the Scrum Board.
+            Project Managers may assign an initiative to a team mid-sprint with a priority so high they begin the sprint over again with a new planning session.
+            
+        Your Jira Epics
+            Created two Epics that contained some user stories for our Backlog.
+
+        Your Scrum Board
+            Fleshed out the User Stories we moved into our current Sprint.
+
 
 
         
