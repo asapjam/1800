@@ -193,3 +193,35 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
 
     Module 6: TDD and e2e Testing
     -----------------------------
+
+        Test-Driven Development (TDD) Overview
+            Another approach to software development that can be combined with Scrum, Kanban, or any other methodology.
+            TDD Cycle:
+                - Write tests that define expected behaviors.
+                - Run tests before writing code to ensure they fail.
+                - Write code that will pass the test.
+                - Make sure tests pass.
+        
+        Test Files
+            Generally have a test suite which can include any of the following types of tests:
+                Unit Test
+                    Tests small pieces of functionality.
+                Integration Test
+                    Tests interplay of pieces of functionality.
+                Contract Test
+                    Establish a "Contract" between two services, like front-end and back-end to make sure they interact in an expected way regardless of changes to either individually.
+                e2e Test
+                    Test user experience, usually by feeding mock user input to database.
+                User-Acceptance Test
+                    Real people try out the application to see if it works.
+        
+        The Purpose of TDD
+            Get in the habit of anticipating complexities and edge-cases up-front so that you don't have to extensively refactor your code later.
+        
+        Install Node
+            Needed so we may create web apps and so Javascript may escape the browser.
+            [NEED REPO FORK TO "npm init"]
+
+        Install Cypress
+            We are installing Cypress for e2e, integration, and unit testing.
+            [NEED REPO FORK TO "npm install cypress --save-dev"]
