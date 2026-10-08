@@ -1,1 +1,1 @@
-The goal of this project is to... rule the world... one step at a time.
+The goal of this project is to allow current and former students to leave testimonials that prospective students can read (No cause for concern).
