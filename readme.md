@@ -1,1 +1,1 @@
-The goal of this project is to allow current and former students to leave testimonials that prospective students can read (No cause for concern).
+Our e-commerce site will allow users to create, view, sell, and purchase products!
