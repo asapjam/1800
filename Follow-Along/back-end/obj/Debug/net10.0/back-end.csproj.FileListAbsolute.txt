@@ -32,3 +32,7 @@ C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\obj\Debug\net10.0\re
 C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\obj\Debug\net10.0\back-end.pdb
 C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\obj\Debug\net10.0\back-end.genruntimeconfig.cache
 C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\obj\Debug\net10.0\ref\back-end.dll
+C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\james\Desktop\Education\1800\Follow-Along\back-end\bin\Debug\net10.0\Scalar.AspNetCore.dll
