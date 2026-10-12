@@ -3,6 +3,10 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
 
     VOCAB
     -----
+    API
+        Application Programming Interface. An interface is simply a predefined way to work with a tool. Twitter API allows you to access tweets, profiles, followers from their backend.
+    ENDPOINT
+
     ROADMAP
         Longterm vision for a project.
     SPRINT
@@ -218,10 +222,62 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
         The Purpose of TDD
             Get in the habit of anticipating complexities and edge-cases up-front so that you don't have to extensively refactor your code later.
         
-        Install Node
-            Needed so we may create web apps and so Javascript may escape the browser.
-            [NEED REPO FORK TO "npm init"]
+        Building a Front-End
+            Install Node
+                Needed so we may create web apps and so Javascript may escape the browser.
+                Node creates a node_modules folder which hold things like Cypress and Faker.
+                This must be in the root directory of our app, where index.html, and index.js are.
+                Install (CommandPrompt):
+                    - cd <directory-path>
+                    - npm init
+            Install Node Modules
+                Vite
+                    Host app on local Vite server. Hot reloading, Javascript treated as modules.
+                    Install (CommandPrompt):
+                        - cd <directory-path>
+                        - npm install -D vite
+                        - npx vite --host
+                Cypress
+                    Testing suite.
+                    Install (CommandPrompt):
+                        - cd <directory-path>
+                        - npm install cypress --save-dev
+                        - npx cypress open
+                    Use
+                        https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test#Write-a-real-test
+                Faker
+                    Creates fake user input/data for testing purposes.
+                    Install (CommandPrompt):
+                        - cd <directory-path>
+                        - npm install @faker-js/faker --save-dev
+                    Use
+                        https://v10.fakerjs.dev/guide/usage.html
 
-        Install Cypress
-            We are installing Cypress for e2e, integration, and unit testing.
-            [NEED REPO FORK TO "npm install cypress --save-dev"]
+        Building a (C#) Back-End
+            Create a minimal API
+                We have to have a way to interface with our Database, this Api will allow us to do so.
+                Requirements:
+                    - VSCode
+                    - C# Dev Kit for Visual Studio Code
+                    - .NET 10.0 SDK
+                Create (VSCode Terminal):
+                    - cd <directory-path>
+                    - dotnet new webapi -o <name_of_new_backend_folder>
+                    - code -r <name_of_new_backend_folder>
+                    - dotnet dev-certs https --trust
+                    - dotnet add package Microsoft.EntityFrameworkCore.InMemory
+                    - dotnet add package Scalar.AspNetCore
+                https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0&tabs=visual-studio-code
+                Run:
+                    - Click Run and Debug on sidebar
+                    - C#
+                    - Project.cs
+        
+        Query Back-End via Front-End
+            Fetch in Javascript uses HTTP verb "GET".
+            Must use Backtick ` for template literals within strings.
+
+        PAUSED 22:40 MIN IN
+
+Questions:
+    - Hosting in vite allows us to "Treat javascript as a module", what does this mean?
