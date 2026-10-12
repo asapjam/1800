@@ -1,8 +1,6 @@
 const getResponse = await fetch("http://localhost:5167/productsAPI");
 const productsJson = await getResponse.json();
 
-import { faker } from '@faker-js/faker';
-
 console.log("productsJson");
 console.log(productsJson);
 
@@ -15,13 +13,24 @@ productsJson.forEach(product => {
     productsList.appendChild(newLi);
 });
 
-// const form = document.querySelector("form");
-// form.addEventListener("submit", async (e) => {
-//     e.preventDefault();
-//     const formData = new FormData(form);
-//     postProductToDatabase(formData);
-//     location.reload();
-// });
+const createNewProductDiv = document.getElementById("createNewProductDiv");
+const createNewProductButton = document.getElementById("createNewProductButton");
+
+createNewProductButton.addEventListener("click", async (e) => {
+    createNewProductDiv.style.visibility = "visible";
+    createNewProductButton.style.display = "none";
+    e.preventDefault();
+});
+
+const form = document.getElementById("createNewProductForm");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const new_product = Object.fromEntries(formData);
+    postProductToDatabase(new_product);
+    location.reload();
+});
 
 async function seedIfEmptyDatabase(){
     if (productsJson.length == 0){
@@ -37,13 +46,14 @@ async function seedIfEmptyDatabase(){
         inventory: 20
         };
         
-        postProductToDatabase(seed_a);
-        postProductToDatabase(seed_b);
+        await postProductToDatabase(seed_a);
+        await postProductToDatabase(seed_b);
         location.reload();
     }
 }
 
 async function postProductToDatabase(new_product){
+    console.log(JSON.stringify(new_product));
     await fetch("http://localhost:5167/productsAPI", {
     method: "post",
     headers: {

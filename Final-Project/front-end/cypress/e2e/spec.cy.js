@@ -5,9 +5,45 @@ describe('products', () => {
     cy.visit('http://localhost:5173/products_page.html');
     cy.get("h1").should("have.text", "Products:");
   });
+
   it('Lists "Products":', () => {
     cy.visit('http://localhost:5173/products_page.html');
     cy.get('ul[name="products_list"]').should("be.visible");
+  });
+});
+
+describe('create products', () => {
+  const fake_name = faker.commerce.productName;
+  const fake_price = faker.commerce.price;
+  const fake_inventory = faker.number.int;
+
+  it('Visits products_page.html:', () => {
+    cy.visit('http://localhost:5173/products_page.html');
+  });
+
+  it('Has a "Create New Product" button:', () => {
+    cy.visit('http://localhost:5173/products_page.html');
+    cy.get('form button[type="button"]')
+      .should("be.visible")
+      .and("have.text", "Create New Product")
+      .click();
+  });
+
+  it('Accepts a User Product Input:', () => {
+    cy.visit('http://localhost:5173/products_page.html');
+    cy.get('form button[type="button"]')
+      .should("be.visible")
+      .and("have.text", "Create New Product")
+      .click();
+    cy.get("form").should("be.visible");
+    cy.get('form input[name="name"]').should("be.visible").type(fake_name);
+    cy.get('form input[name="price"]').should("be.visible").type(fake_price);
+    cy.get('form input[name="inventory"]').should("be.visible").type(fake_inventory);
+  });
+
+  
+  it('Verfies the Product Populated:', () => {
+
   });
 });
 
