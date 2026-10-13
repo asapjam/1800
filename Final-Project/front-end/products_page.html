@@ -1,20 +1,35 @@
 <html>
     <head>
         <script src="products_page.js" type="module"></script>
+        <link rel="stylesheet" href="products_page.css">
     </head>
     <body>
         <h1>Products:</h1>
 
         <ul name="products_list"></ul>
 
-        <!-- <form>
-            <label for="feedback">Feedback: </label>
-            <input name="feedback" type="text"/>
+        <form id="createNewProductButton">
+            <button type="button" id="createNewProduct">Create New Product</button>
+        </form>
+        
+        <div id="createNewProductDiv">
+            <h2>Create a Product!</h2>
+            <form id="createNewProductForm">
+                <label for="name">Name: </label>
+                <input name="name" type="text"/>
 
-            <label for="rating">Rating: </label>
-            <input name="rating" type="number"/>
+                <label for="price">Price: </label>
+                <input name="price" type="number" step="any"/>
 
-            <button type="submit">Create Testimonial</button>
-        </form> -->
+                <label for="inventory">Inventory: </label>
+                <input name="inventory" type="number"/>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="createNewProductFeedback">
+
+        </div>
     </body>
 </html>
