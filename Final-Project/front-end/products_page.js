@@ -8,7 +8,7 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 
 productsJson.forEach(product => {
     const newLi = document.createElement("li");
-    newLi.innerText = `Name: ${product.name}, Price: ${product.price}, Inventory: ${product.inventory}`;
+    newLi.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
 
     productsList.appendChild(newLi);
 });
@@ -19,7 +19,6 @@ const createNewProductButton = document.getElementById("createNewProductButton")
 createNewProductButton.addEventListener("click", async (e) => {
     createNewProductDiv.style.visibility = "visible";
     createNewProductButton.style.display = "none";
-    e.preventDefault();
 });
 
 const form = document.getElementById("createNewProductForm");
@@ -29,7 +28,8 @@ form.addEventListener("submit", async (e) => {
     const formData = new FormData(form);
     const new_product = Object.fromEntries(formData);
     postProductToDatabase(new_product);
-    location.reload();
+    giveUserFeedback();
+    // location.reload();
 });
 
 async function seedIfEmptyDatabase(){
@@ -61,6 +61,18 @@ async function postProductToDatabase(new_product){
     },
     body: JSON.stringify(new_product)
     });
+}
+
+const feedbackDiv = document.getElementById("createNewProductFeedback")
+
+function giveUserFeedback(){
+    const newParagraph = document.createElement("p");
+    newParagraph.textContent = "Product successfully created!"
+    feedbackDiv.appendChild(newParagraph);
+    const newReloadLink = document.createElement("a");
+    newReloadLink.textContent = "See your new product";
+    newReloadLink.href = "/products_page.html";
+    feedbackDiv.appendChild(newReloadLink);
 }
 
 seedIfEmptyDatabase();
