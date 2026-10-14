@@ -6,6 +6,8 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
     API
         Application Programming Interface. An interface is simply a predefined way to work with a tool. Twitter API allows you to access tweets, profiles, followers from their backend.
     ENDPOINT
+    REGRESSIONS
+        Errors in preexisting features introduced with new changes to the codebase.
 
     ROADMAP
         Longterm vision for a project.
@@ -295,16 +297,38 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
             Node Modules (cont.)
                 Jest
                     Testing suite. Unit testing especially. 
-                    (Worryingly, docs say it's incompatible with modern Vite versions.)
+                    (This is run in isolation, unlike the other node modules- there is no database or hosting involved.)
                     Install (CommandPrompt):
                         - cd <directory-path>
                         - npm install --save-dev jest
                         - npx jest
                     Use:
-
-
-
-
+                        https://jestjs.io/docs/getting-started
+                        
+        A Further Note on Testing
+            Backend Unit Testing
+                Writing unit tests on the Back-End requires PHP knowledge I don't have.
+                Would be good to try this with something like MongoDB so I can see how querying a real database from Javascript looks like.
+            Integration Testing
+                Large scope testing.
+                Ex.
+                    How two functions interact.
+                    An application made of smaller-applications (called microservices).
+                    How front-end and back-end interact (is this not just e2e testing again?).
+            Component Testing
+                Testing tailored to frontend frameworks 
+                Testing isolated components.
+            CI/CD
+                Continuous Integration/Continuous Deployment
+                Automated testing.
+                Prevents regressions (older tests fail because of soemthing you added).
+            .env Files
+                Senstive files that contain variables we wouldn't want shared on Git.
+                Must be added to .gitignore
+                Might include an API key.
+    
+    Module 9: Mid-Sprint Priority Shift
+    -----------------------------------
 
 Questions:
     - Hosting in vite allows us to "Treat javascript as a module", what does this mean?

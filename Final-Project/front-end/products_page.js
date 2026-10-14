@@ -114,7 +114,7 @@ async function postProductToDatabase(new_product){
 // MAIN LOGIC
 
 async function main(){
-    printArrayToProductsList(productsJson)
+    printArrayToProductsList(sortProducts(arrayToPrint, "nameAscending"));
     seedIfEmptyDatabase();
 }
 
