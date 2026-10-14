@@ -29,10 +29,11 @@ createNewUserDiv.addEventListener("submit", async (e) => {
     }
     // if user does not exist add it to database and give confirmation message
     else{
-        postUserToDatabase(userAsObject);
+        const serverUserObject = await postUserToDatabase(userAsObject);
         createNewUserFeedback.innerHTML = "";
         const newP = document.createElement("p");
-        newP.textContent = "User successfully created!";
+        console.log(serverUserObject);
+        newP.textContent = "User successfully created! User Id:" + serverUserObject.id;
         createNewUserFeedback.appendChild(newP);
         createNewUserDiv.style.display = "none";
     };
@@ -48,6 +49,10 @@ function doesUserAlreadyExist(usernameToCheck){
         };
     };
     return false;
+
+// RETURN NEW USER'S ID
+
+// function returnNewUserId
 
     //You cant return out of a ForEach loop oh my god bruh
     // usersArrayCopy.forEach(user => {
@@ -67,11 +72,13 @@ function doesUserAlreadyExist(usernameToCheck){
 
 async function postUserToDatabase(new_user){
     console.log(JSON.stringify(new_user));
-    await fetch("http://localhost:5167/usersAPI", {
+    const outgoing = await fetch("http://localhost:5167/usersAPI", {
     method: "post",
     headers: {
         "Content-Type": "application/json"
     },
     body: JSON.stringify(new_user)
     });
+    const response = outgoing.json();
+    return await response;
 };
