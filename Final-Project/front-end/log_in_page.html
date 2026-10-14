@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="log_in_page.js" type="module"></script>
+        <link rel="stylesheet" href="log_in_page.css">
+    </head>
+    <body>
+        <h1>Log in:</h1>
+
+        <form id="createNewUserButton">
+            <button type="button" id="createNewUser">Create an account!</button>
+        </form>
+
+        <div id="createNewUserDiv">
+            <h2>Create an account!</h2>
+            <form id="createNewUserForm">
+                <label for="username">Username: </label>
+                <input name="username" type="text" minlength="5" required/>
+
+                <label for="password">Password: </label>
+                <input name="password" type="password" minlength="5" required/>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div id="createNewUserFeedback"></div>
+
+        <!-- <div id="loginExistingUserDiv">
+            <h2>Log in to an account!</h2>
+            <form id="loginExistingUserForm">
+                <label for="username">Username: </label>
+                <input name="username" type="text" required/>
+
+                <label for="password">Password: </label>
+                <input name="password" type="text" required/>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div> -->
+    </body>
+</html>
