@@ -25,17 +25,23 @@
 
         <div id="createNewUserFeedback"></div>
 
-        <!-- <div id="loginExistingUserDiv">
+        <form id="logInButton">
+            <button type="button" id="logIn">Have an account? Log in!</button>
+        </form>
+
+        <div id="logInDiv">
             <h2>Log in to an account!</h2>
-            <form id="loginExistingUserForm">
+            <form id="logInForm">
                 <label for="username">Username: </label>
-                <input name="username" type="text" required/>
+                <input name="username" type="text" minlength="5" required/>
 
                 <label for="password">Password: </label>
-                <input name="password" type="text" required/>
+                <input name="password" type="password" minlength="5" required/>
 
                 <button type="submit">Submit</button>
             </form>
-        </div> -->
+        </div>
+
+        <div id="logInFeedback"></div>
     </body>
 </html>
