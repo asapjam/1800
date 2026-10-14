@@ -1,17 +1,25 @@
 const getResponse = await fetch("http://localhost:5167/productsAPI");
 const productsJson = await getResponse.json();
 
+import {sortProducts} from "./util/sortProducts.js"
+
 console.log("productsJson");
 console.log(productsJson);
 
 const productsList = document.querySelector('ul[name = "products_list"]');
 
-productsJson.forEach(product => {
-    const newLi = document.createElement("li");
-    newLi.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
+//PRINT PRODUCT LIST TO SCREEN
 
-    productsList.appendChild(newLi);
-});
+async function printArrayToProductsList(arrayOfProducts){
+    arrayOfProducts.forEach(product => {
+        const newLi = document.createElement("li");
+        newLi.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
+
+        productsList.appendChild(newLi);
+    });
+};
+
+//CREATE NEW PRODUCT LOGIC
 
 const createNewProductDiv = document.getElementById("createNewProductDiv");
 const createNewProductButton = document.getElementById("createNewProductButton");
@@ -31,6 +39,44 @@ form.addEventListener("submit", async (e) => {
     giveUserFeedback();
     // location.reload();
 });
+
+const feedbackDiv = document.getElementById("createNewProductFeedback")
+
+function giveUserFeedback(){
+    const newParagraph = document.createElement("p");
+    newParagraph.textContent = "Product successfully created!"
+    feedbackDiv.appendChild(newParagraph);
+    const newReloadLink = document.createElement("a");
+    newReloadLink.textContent = "See your new product";
+    newReloadLink.href = "/products_page.html";
+    feedbackDiv.appendChild(newReloadLink);
+}
+
+// SORT PRODUCTS LOGIC
+
+const sortButton = document.getElementById("sort_dropdown");
+
+sortButton.addEventListener("change", () => {
+    const selectedSortOption = sortButton.value;
+    productsList.innerHTML = "";
+    let arrayToPrint = productsJson;
+
+    switch(selectedSortOption){
+        case "alphabetically":
+            arrayToPrint = sortProducts(arrayToPrint, "nameAscending");
+            break;
+        case "price":
+            arrayToPrint = sortProducts(arrayToPrint, "priceAscending");
+            break;
+        case "rating":
+            arrayToPrint = sortProducts(arrayToPrint, "ratingDescending");
+            break;
+    };
+
+    printArrayToProductsList(arrayToPrint);
+});
+
+//SEED EMPTY DATABASE LOGIC
 
 async function seedIfEmptyDatabase(){
     if (productsJson.length == 0){
@@ -52,6 +98,8 @@ async function seedIfEmptyDatabase(){
     }
 }
 
+// POST DATA TO DATABASE LOGIC
+
 async function postProductToDatabase(new_product){
     console.log(JSON.stringify(new_product));
     await fetch("http://localhost:5167/productsAPI", {
@@ -63,16 +111,13 @@ async function postProductToDatabase(new_product){
     });
 }
 
-const feedbackDiv = document.getElementById("createNewProductFeedback")
+// MAIN LOGIC
 
-function giveUserFeedback(){
-    const newParagraph = document.createElement("p");
-    newParagraph.textContent = "Product successfully created!"
-    feedbackDiv.appendChild(newParagraph);
-    const newReloadLink = document.createElement("a");
-    newReloadLink.textContent = "See your new product";
-    newReloadLink.href = "/products_page.html";
-    feedbackDiv.appendChild(newReloadLink);
+async function main(){
+    printArrayToProductsList(productsJson)
+    seedIfEmptyDatabase();
 }
 
-seedIfEmptyDatabase();
+// LOGIC WE ARE RUNNING (OUTSIDE OF LISTENERS)
+
+main();
