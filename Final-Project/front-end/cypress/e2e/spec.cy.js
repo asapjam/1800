@@ -61,6 +61,76 @@ describe('create products', () => {
   });
 });
 
+describe('users', () => {
+  it('Has a "Log in" header:', () => {
+    cy.visit('http://localhost:5173/log_in_page.html');
+    cy.get("h1").should("have.text", "Log in:");
+  });
+
+  it('Has required fields:', () => {
+    cy.visit('http://localhost:5173/log_in_page.html');
+    cy.get("#createNewUser")
+      .should("be.visible")
+      .click();
+    cy.get("#createNewUserForm")
+      .should("be.visible");
+    cy.get('#createNewUserForm input[name="username"]')
+      .should("be.visible");
+    cy.get('#createNewUserForm input[name="password"]')
+      .should("be.visible");
+    cy.get('#createNewUserForm button[type="submit"]')
+      .should("be.visible");
+  });
+
+  const username = faker.internet.username();
+  const password = faker.internet.password();
+
+  it('Allows account creation with succcess message:', () => {
+    cy.visit('http://localhost:5173/log_in_page.html');
+    cy.get("#createNewUser")
+      .should("be.visible")
+      .click();
+    cy.get("#createNewUserForm")
+      .should("be.visible");
+    cy.get('#createNewUserForm input[name="username"]')
+      .should("be.visible")
+      .type(username);
+    cy.get('#createNewUserForm input[name="password"]')
+      .should("be.visible")
+      .type(password);
+    cy.get('#createNewUserForm button[type="submit"]')
+      .should("be.visible")
+      .and("have.text", "Submit")
+      .click();
+    cy.get("#createNewUserFeedback p")
+      .should("be.visible")
+      .and("have.text", "User successfully created!");
+  });
+
+  it("Doesn't allow duplicate usernames with failure message:", () => {
+    cy.visit('http://localhost:5173/log_in_page.html');
+    cy.get("#createNewUser")
+      .should("be.visible")
+      .click();
+    cy.get("#createNewUserForm")
+      .should("be.visible");
+    cy.get('#createNewUserForm input[name="username"')
+      .should("be.visible")
+      .type(username);
+    cy.get('#createNewUserForm input[name="password"')
+      .should("be.visible")
+      .type(password);
+    cy.get('#createNewUserForm button[type="submit"]')
+      .should("be.visible")
+      .and("have.text", "Submit")
+      .click();
+    cy.get("#createNewUserFeedback p")
+      .should("be.visible")
+      .and("have.text", "Username is taken, try another one!")
+  });
+
+});
+
   // it("creates-testimonials", () => {
   //   cy.visit('http://localhost:5173/products_page.html');
 
