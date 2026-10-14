@@ -238,7 +238,7 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
                         - npm install -D vite
                         - npx vite --host
                 Cypress
-                    Testing suite.
+                    Testing suite. End-to-End especially.
                     Install (CommandPrompt):
                         - cd <directory-path>
                         - npm install cypress --save-dev
@@ -277,7 +277,34 @@ TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
             Fetch in Javascript uses HTTP verb "GET".
             Must use Backtick ` for template literals within strings.
 
-        PAUSED 22:40 MIN IN
+    Module 7: Backlog Refinement
+    ----------------------------
+
+        Overview
+            Devs collaborate to flesh out User Stories within the backlog with the following to make future Sprint Planning sessions easier:
+                - Technical Steps
+                - Story Points
+                - Time Estimate
+                - Assignment
+                - User Acceptance Criteria
+
+    Module 8: TDD and Unit Testing
+    ------------------------------
+
+        Building a Front-End (cont.)
+            Node Modules (cont.)
+                Jest
+                    Testing suite. Unit testing especially. 
+                    (Worryingly, docs say it's incompatible with modern Vite versions.)
+                    Install (CommandPrompt):
+                        - cd <directory-path>
+                        - npm install --save-dev jest
+                        - npx jest
+                    Use:
+
+
+
+
 
 Questions:
     - Hosting in vite allows us to "Treat javascript as a module", what does this mean?
