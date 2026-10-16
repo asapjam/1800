@@ -1,3 +1,6 @@
 #createNewUserDiv{
-    visibility: hidden;
+    display: none;
+}
+#logInDiv{
+    display: none;
 }

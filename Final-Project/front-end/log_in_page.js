@@ -1,6 +1,8 @@
 const getResponse = await fetch("http://localhost:5167/usersAPI");
 const usersJson = await getResponse.json();
 
+// CREATE USER START
+
 const createNewUserButton = document.getElementById("createNewUserButton");
 const createNewUserForm = document.getElementById("createNewUserForm");
 const createNewUserDiv = document.getElementById("createNewUserDiv");
@@ -9,7 +11,7 @@ const createNewUserFeedback = document.getElementById("createNewUserFeedback");
 // BUTTON TO SHOW CREATE USERNAME FORM LOGIC
 
 createNewUserButton.addEventListener("click", async (e) => {
-    createNewUserDiv.style.visibility = "visible";
+    createNewUserDiv.style.display = "block";
     createNewUserButton.style.display = "none";
 });
 
@@ -29,12 +31,14 @@ createNewUserDiv.addEventListener("submit", async (e) => {
     }
     // if user does not exist add it to database and give confirmation message
     else{
-        postUserToDatabase(userAsObject);
+        const serverUserObject = await postUserToDatabase(userAsObject);
         createNewUserFeedback.innerHTML = "";
         const newP = document.createElement("p");
-        newP.textContent = "User successfully created!";
+        console.log(serverUserObject);
+        newP.textContent = "User successfully created! User Id:" + serverUserObject.id;
         createNewUserFeedback.appendChild(newP);
         createNewUserDiv.style.display = "none";
+        logInButton.style.display = "none";
     };
 });
 
@@ -44,10 +48,10 @@ function doesUserAlreadyExist(usernameToCheck){
     const usersArrayCopy = usersJson;
     for (let i = 0; i < usersArrayCopy.length; i++){
         if(usersArrayCopy[i].username == usernameToCheck){
-            return true;
+            return usersArrayCopy[i].id;
         };
     };
-    return false;
+    return null;
 
     //You cant return out of a ForEach loop oh my god bruh
     // usersArrayCopy.forEach(user => {
@@ -67,11 +71,61 @@ function doesUserAlreadyExist(usernameToCheck){
 
 async function postUserToDatabase(new_user){
     console.log(JSON.stringify(new_user));
-    await fetch("http://localhost:5167/usersAPI", {
+    const outgoing = await fetch("http://localhost:5167/usersAPI", {
     method: "post",
     headers: {
         "Content-Type": "application/json"
     },
     body: JSON.stringify(new_user)
     });
+    const response = outgoing.json();
+    return await response;
 };
+
+// CREATE USER END
+// LOG IN EXISTING USER START
+
+const logInButton = document.getElementById("logInButton");
+const logInForm = document.getElementById("logInForm");
+const logInDiv = document.getElementById("logInDiv");
+const logInFeedback = document.getElementById("logInFeedback");
+
+logInButton.addEventListener("click", async (e) => {
+    logInDiv.style.display = "block";
+    logInButton.style.display = "none";
+});
+
+logInDiv.addEventListener("submit", async (e) => {
+    // if user exists, allow them to log in.
+    e.preventDefault();
+    const formData = new FormData(logInForm);
+    const userAsObject = Object.fromEntries(formData);
+
+    if (isCorrectCredentials(userAsObject)){
+        logInFeedback.innerHTML = "";
+        const newP = document.createElement("p");
+        newP.textContent = "Logged in!";
+        logInFeedback.appendChild(newP);
+        logInDiv.style.display = "none";
+        createNewUserButton.style.display = "none";
+    }
+    // if credentials dont match, then throw an error message and ask them to try again.
+    else{
+        logInFeedback.innerHTML = "";
+        const newP = document.createElement("p");
+        newP.textContent = "Incorrect username/password! Try again...";
+        logInFeedback.appendChild(newP);
+    };
+});
+
+function isCorrectCredentials(objectToCheck){
+    const usersArrayCopy = usersJson;
+    for (let i = 0; i < usersArrayCopy.length; i++){
+        if(usersArrayCopy[i].username == objectToCheck.username && usersArrayCopy[i].password == objectToCheck.password){
+            return usersArrayCopy[i].id;
+        };
+    };
+    return null;
+};
+
+// LOG IN EXISTING USER END
