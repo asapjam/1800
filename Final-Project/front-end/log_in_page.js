@@ -32,7 +32,7 @@ createNewUserDiv.addEventListener("submit", async (e) => {
 	else {
 		const serverUserObject = await postUserToDatabase(userAsObject);
 		pageFeedback.textContent =
-			"User successfully created! User Id:" + serverUserObject.id;
+			"User successfully created! User Id: " + serverUserObject.id;
 		createNewUserDiv.style.display = "none";
 		logInButton.style.display = "none";
 	}
@@ -128,13 +128,12 @@ function storeSessionIdLocally(sessionId) {
 }
 
 // LOG IN EXISTING USER END
-
 // LOG OUT START
 
 const logOutDiv = document.getElementById("logOutDiv");
+const sessionId = sessionStorage.getItem("sessionId");
 
 function userIsLoggedIn() {
-	const sessionId = sessionStorage.getItem("sessionId");
 	if (sessionId) {
 		return true;
 	} else {
