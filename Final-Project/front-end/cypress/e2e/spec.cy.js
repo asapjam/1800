@@ -115,7 +115,7 @@ describe("create users", () => {
 	});
 });
 
-describe("log in users", () => {
+describe("log in/out users", () => {
 	it("Has required fields:", () => {
 		cy.visit("http://localhost:5173/log_in_page.html");
 		cy.get("#logInButton button").should("be.visible").click();
@@ -125,7 +125,7 @@ describe("log in users", () => {
 		cy.get('#logInForm button[type="submit"]').should("be.visible");
 	});
 
-	it("Allows successful login with feedback:", () => {
+	it("Allows login with feedback:", () => {
 		cy.visit("http://localhost:5173/log_in_page.html");
 		cy.get("#logInButton button").should("be.visible").click();
 		cy.get("#logInForm").should("be.visible");
@@ -148,25 +148,18 @@ describe("log in users", () => {
 			.should("be.visible")
 			.and("have.text", "Incorrect username/password! Try again...");
 	});
+
+	it("Allows logout:", () => {
+		cy.visit("http://localhost:5173/log_in_page.html");
+		cy.get("#logInButton button").should("be.visible").click();
+		cy.get("#logInForm").should("be.visible");
+		cy.get('#logInForm input[name="username"]').should("be.visible").type(username);
+		cy.get('#logInForm input[name="password"]').should("be.visible").type(password);
+		cy.get('#logInForm button[type="submit"]').should("be.visible").click();
+		cy.get("#pageFeedback").should("be.visible").and("have.text", "Logged in!");
+		cy.get("#logInLink").click();
+		cy.get("#logOutButton").should("be.visible").click();
+		cy.get("#pageFeedback").should("be.visible").and("have.text", "Logged out!");
+	});
 });
 
-// it("creates-testimonials", () => {
-//   cy.visit('http://localhost:5173/products_page.html');
-
-//   // const feedback = faker.commerce.productDescription();
-//   // const rating = faker.number.int({ min: 0, max: 5});
-
-//   // cy.get("form").should("be.visible");
-//   // cy.get('form input[name="feedback"]').should("be.visible").type(feedback);
-//   // cy.get('form input[name="rating"][type="number"]').should("be.visible").type(rating);
-//   // cy.get('form button[type="submit"]')
-//   //   .should("be.visible")
-//   //   .and("have.text", "Create Testimonial")
-//   //   .click();
-
-//   cy.get('ul[name="testimonials_list"] li:last')
-//     .should("be.visible")
-//     .and("have.text", `Feedback: ${feedback}, Rating: ${rating}`);
-
-//   cy.url('eq', 'http://localhost:5173/products');
-// });

@@ -144,6 +144,7 @@ function userIsLoggedIn() {
 function createLogOutButton() {
 	const logOutButton = document.createElement("button");
 	logOutButton.textContent = "Log Out";
+	logOutButton.id = "logOutButton";
 	logOutButton.addEventListener("click", async (e) => {
 		e.preventDefault();
 		removeSessionIdLocally(sessionId);
