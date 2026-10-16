@@ -1,3 +1,6 @@
 #createNewProductDiv{
     visibility: hidden;
 }
+#createNewProductButton{
+    display: none;
+}

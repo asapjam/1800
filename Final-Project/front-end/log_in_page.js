@@ -32,7 +32,7 @@ createNewUserDiv.addEventListener("submit", async (e) => {
 	else {
 		const serverUserObject = await postUserToDatabase(userAsObject);
 		pageFeedback.textContent =
-			"User successfully created! User Id: " + serverUserObject.id;
+			"User successfully created!";
 		createNewUserDiv.style.display = "none";
 		logInButton.style.display = "none";
 	}
