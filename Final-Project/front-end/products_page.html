@@ -1,43 +1,53 @@
 <html>
-    <head>
-        <script src="products_page.js" type="module"></script>
-        <link rel="stylesheet" href="products_page.css">
-    </head>
-    <body>
-        <h1>Products:</h1>
 
-        <label for="sort_dropdown">Sort products by:</label>
-        <select name="sort_dropdown" id="sort_dropdown">
-            <option value="newest">Newest</option>
-            <option value="alphabetically">Alphabetically</option>
-            <option value="price">Price</option>
-            <option value="rating">Rating</option>
-        </select>
+<head>
+    <script src="products_page.js" type="module"></script>
+    <link rel="stylesheet" href="products_page.css">
+</head>
 
-        <ul name="products_list"></ul>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="log_in_page.html" id="logInLink">Account</a>
+        <a href="products_page.html">Products</a>
+    </nav>
+    <p id="pageFeedback"></p>
 
-        <form id="createNewProductButton">
-            <button type="button" id="createNewProduct">Create New Product</button>
+    <h1>Products:</h1>
+
+    <label for="sort_dropdown">Sort products by:</label>
+    <select name="sort_dropdown" id="sort_dropdown">
+        <option value="newest">Newest</option>
+        <option value="alphabetically">Alphabetically</option>
+        <option value="price">Price</option>
+        <option value="rating">Rating</option>
+    </select>
+
+    <ul name="products_list"></ul>
+
+    <form id="createNewProductButton">
+        <button type="button" id="createNewProduct">Create New Product</button>
+    </form>
+
+    <div id="createNewProductDiv">
+        <h2>Create a Product!</h2>
+        <form id="createNewProductForm">
+            <label for="name">Name: </label>
+            <input name="name" type="text" />
+
+            <label for="price">Price: </label>
+            <input name="price" type="number" step="any" />
+
+            <label for="inventory">Inventory: </label>
+            <input name="inventory" type="number" />
+
+            <button type="submit">Submit</button>
         </form>
-        
-        <div id="createNewProductDiv">
-            <h2>Create a Product!</h2>
-            <form id="createNewProductForm">
-                <label for="name">Name: </label>
-                <input name="name" type="text"/>
+    </div>
 
-                <label for="price">Price: </label>
-                <input name="price" type="number" step="any"/>
+    <div id="createNewProductFeedback">
 
-                <label for="inventory">Inventory: </label>
-                <input name="inventory" type="number"/>
+    </div>
+</body>
 
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-
-        <div id="createNewProductFeedback">
-
-        </div>
-    </body>
 </html>
