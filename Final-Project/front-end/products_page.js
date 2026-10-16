@@ -111,9 +111,28 @@ async function postProductToDatabase(new_product){
     });
 }
 
+// DUPLICATE SESSION MANAGEMENT LOGIC... SHOULD BE PART OF UTIL...
+
+const sessionId = sessionStorage.getItem("sessionId");
+
+function userIsLoggedIn() {
+	if (sessionId) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function createProductRequiresLogin(){
+    if (userIsLoggedIn()){
+        createNewProductButton.style.display ="block";
+    }
+}
+
 // MAIN LOGIC
 
 async function main(){
+    createProductRequiresLogin();
     printArrayToProductsList(productsJson);
     seedIfEmptyDatabase();
 }
