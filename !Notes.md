@@ -1,0 +1,368 @@
+# TESD 1800 - SOFTWARE DEVELOPMENT LIFECYCLE
+
+## VOCAB
+### API
+    Application Programming Interface. An interface is simply a predefined way to work with a tool. Twitter API allows you to access tweets, profiles, followers from their backend.
+### ENDPOINT
+### REGRESSIONS
+    Errors in preexisting features introduced with new changes to the codebase.
+### STAKEHOLDERS
+    Project manager, other managers, executives, and even customers.
+### ROADMAP
+    Longterm vision for a project.
+### SPRINT
+    Usually a two-week stint of accomplishing tasks.
+### BACKLOG
+    A single, emergent, and ordered list of everything required to improve or deliver a product, including features, bug fixes, technical tasks, and research activities
+    PRODUCT BACKLOG
+        Work to be completed generally, waiting to be added to Sprint Backlog
+    SPRINT BACKLOG
+        Work to be completed during current sprint
+### INITIATIVE
+    Groups of related User Stories, which have the following format: "As a [someone], I want to be able to do [something]" when interacting with your application.
+### CEREMONY
+    Scrum ceremonies are structured meetings.
+#### DAILY STANDUP
+        Ceremony to update on everyones progress and blockers.
+#### SPRINT PLANNING
+        Ceremony to plan the Sprint.
+#### SPRINT REVIEW
+        Review Sprint and demo functionality to stakeholders.
+#### SPRINT RETROSPECTIVE
+    Meeting to discuss the following:
+    - What went well?
+    - What problems arose?
+    - What solutions were attempted, and how effective were they?
+    - What improvements could be made going forward?
+### REQUIREMENTS
+### DEPENDENCIES
+    What work requires other work to be done first.
+### USER STORIES
+    "As a [someone], I want to be able to do [something]".
+    Features, enhancements, or bug fixes.
+### EPICS
+    Groups of user stories.
+### KANBAN BOARD
+    Visualization of workflow.
+### WORKFLOW
+    3 Columns of levels of completeness for user stories.
+### DEFINITION OF DONE
+    What work must be complete before the Sprint is considered complete.
+### MINUIMUM VIABLE PRODUCT
+    Defines the bare minimum functionality that end-users would find useful enough to purchase.
+
+## MODULE 1: Overview of the Software Development Life Cycle (SDLC)
+
+    AGILE VS WATERFALL DEVELOPMENT
+        AGILE is breaking a project into smaller iterations, each delivering value and incorporating feedback from stakeholders.
+        WATERFALL follows a strict sequence, where each phase must be completed before moving to the next, making it less adaptable to changes.
+
+    TYPES OF AGILE DEVELOPMENT
+        SCRUM
+            Method for managing projects in small steps (sprints).
+            Teams work closely together and adapt as they go.
+            Regular meetings keep everyone on track.
+        KANBAN
+            A visual way to manage work. (Kanban board)
+            Shows what needs to be done, what's being worked on, and what's done.
+            Helps teams work efficiently by limiting how much they do at once.
+        TDD
+            Write tests before writing code.
+            Helps make sure the code works correctly and is easy to change.
+            Encourages developers to test often and fix problems as they go.
+
+    SCRUM IN-DEPTH
+        Scrum is a type of agile development that prioritizes continuous improvement in cycles of timed "sprints" usually lasting two weeks.
+        https://scrumguides.org/scrum-guide.html
+
+        ROLES
+            Product Owner
+                Leader of Dev Team.
+                Manages backlog and priorities.
+                Helps with blockers.
+                Interacts with customers.
+            Development Team
+                Software Engineers.
+                Generally each one is specialized.
+            Scrum Master
+                Coaches people how to hold scrum ceremonies.
+
+        ARTIFACTS
+            Product Backlog
+                User stories prioritized by Product Owner to be added to Sprint Backlog.
+            Sprint Backlog
+                User stories that team members must complete during current sprint.
+                Taking ownership of a user story at this point means moving it from backlog to your Scrum Board.
+            Scrum Board
+                A visual representation of how much progress has been made for all of the user stories in this sprint; this board consists of a column for each stage of completion.
+            Definition of Done / Increment / Sprint Goal
+                The one or more functionalities that will be demo-able at the end of the sprint, and that are necessary for user stories to progress to the rightmost column in the Scrum Board (this column might be labelled "Done", for example).
+
+        CEREMONIES
+            Backlog Refinement
+                Product Owner prioritizes items in Product Backlog to current business needs.
+            Sprint Planning
+                Teams move items from Product Backlog to Sprint Backlog and flesh them out.
+            Daily Standups / Daily Scrums
+                Each team member updates team of progress on their user stories.
+            Sprint Review
+                Demo completed work, incomplete stories are put back in the Product Backlog.
+            Sprint Retrospectives
+                Team reflects.
+
+    KANBAN IN-DEPTH
+        Kanban is an agile framework that emphasizes continuous delivery of features, enhancements and bug fixes (rather than releases in fixed cycles as with Scrum), and ensuring visibility of the productivity and capacity of teams.
+        Three Columns
+            Not Started
+            In-progress
+            Done
+        Each column can have a maximum number of tasks or "cards" in them.
+
+## MODULE 2: Building a Product Roadmap
+
+    Organizing a Product Roadmap
+        Split into columns with labels that illustrate progression.
+        Examples of tools for Roadmaps include Trello & Jira.
+        https://www.atlassian.com/agile/product-management/product-roadmaps
+        Begins with a Minimum Viable Product initiative.
+
+    Product Backlog
+        After adding initiatives to a Product Roadmap, the Project Manager assigns these initiatives to individual Scrum teams.
+        The Product Owner of a Scrum Team determines the priority of the items therein and oversees Product Backlog Refinement Meetings with the engineers to break each item into smaller scope stories.
+        Product Requirements Document (PRD) explaining each Epic and their purpose/features/functionality.
+        Project Managers prioritize backlog by  "customer priority; urgency of getting feedback; relative implementation difficulty; symbiotic relationships between work items (e.g. B is easier if we do A first)".
+
+## MODULE 3: Sprint Planning
+
+    Components of Sprint Planning Sessions
+        Scrum sprints begin with a Sprint Planning Ceremony.
+        Developers take as many stories from the top of the Product Backlog as they think they can finish with a Sprint.
+        They then flesh out the following for each item.
+            - User story
+                -"As a [someone], I want to be able to [something]"; for example, "As a logged-in user, I want to be able to log out of the application", or "As an admin user, I want to be able to delete user accounts".
+            - Technical Steps
+                - Outline the tasks that are needed to complete the user story
+            - Story Points
+                - An estimate of the difficulty of the story in points (usually 1 for pretty easy, 3 for somewhat difficult or laborious, 5 for quite difficult or laborious).
+            - Time Estimate
+                - Estimate of how long to finish the story.
+            - Assignment
+                - Which team member will tackle the story.
+            - User Acceptance Criteria
+                -  The conditions the user story must meet to become acceptable to the end user.
+        Next the engineers figure out Dependencies. Which stories require other stories to be complete before starting.
+        Finally, the engineers collaborate on a Definition of Done, which is a list of conditions that must be met before the work for the Sprint can be considered to be complete.
+        Team members begin work on the issues they were assigned, and they advance their stories on the Scrum Board.
+        Project Managers may assign an initiative to a team mid-sprint with a priority so high they begin the sprint over again with a new planning session.
+
+    Your Jira Epics
+        Created two Epics that contained some user stories for our Backlog.
+
+    Your Scrum Board
+        Fleshed out the User Stories we moved into our current Sprint.
+
+## MODULE 4: Git Branches
+
+    Creating and Merging Git Branches
+        Branch-Naming Nomenclature:
+            <User-Story-ID>-brief-description
+            Ex.
+                HH-8-add-readme-description
+        Branch Lifecycle:
+            - Create Branch
+            - Switch to new Branch
+            - Make, add and commit changes to new Branch
+            - Push changes to Branch
+            - Create Pull Request, and return to Main Branch and resolve conflicts.
+            - Merge the Branch
+            - Delete the Branch
+
+    Your Git Branch Cycle
+        Create two branches with conflicting data, merge them into main and resolve the conflict!
+        [IMPOSSIBLE UNTIL GITHUB REPO MADE AVAILABLE]
+
+## MODULE 5: Daily Standups
+
+    Daily Standups
+        Cover the following:
+            - What they worked on yesterday.
+            - What they're working on today.
+            - Any blockers they are dealing with.
+            - Any changes to their availability in the foreseeable future.
+        Take place in person or virtually.
+
+    Your First Daily Standup
+        Yesterday I completed the "As a developer, I want to be able to read a readme with a description of the app" User Story.
+        Today I will complete the "As a seller or a potential buyer of a product, I want to be able to view information about products for sale" User Story.
+        Blockers include not knowing what the data will look like when it is pulled from the Database.
+        My availability will remain the same.
+
+## MODULE 6: TDD and e2e Testing
+
+    Test-Driven Development (TDD) Overview
+        Another approach to software development that can be combined with Scrum, Kanban, or any other methodology.
+        TDD Cycle:
+            - Write tests that define expected behaviors.
+            - Run tests before writing code to ensure they fail.
+            - Write code that will pass the test.
+            - Make sure tests pass.
+
+    Test Files
+        Generally have a test suite which can include any of the following types of tests:
+            Unit Test
+                Tests small pieces of functionality.
+            Integration Test
+                Tests interplay of pieces of functionality.
+            Contract Test
+                Establish a "Contract" between two services, like front-end and back-end to make sure they interact in an expected way regardless of changes to either individually.
+            e2e Test
+                Test user experience, usually by feeding mock user input to database.
+            User-Acceptance Test
+                Real people try out the application to see if it works.
+
+    The Purpose of TDD
+        Get in the habit of anticipating complexities and edge-cases up-front so that you don't have to extensively refactor your code later.
+
+    Building a Front-End
+        Install Node
+            Needed so we may create web apps and so Javascript may escape the browser.
+            Node creates a node_modules folder which hold things like Cypress and Faker.
+            This must be in the root directory of our app, where index.html, and index.js are.
+            Install (CommandPrompt):
+                - cd <directory-path>
+                - npm init
+        Install Node Modules
+            Vite
+                Host app on local Vite server. Hot reloading, Javascript treated as modules.
+                Install (CommandPrompt):
+                    - cd <directory-path>
+                    - npm install -D vite
+                    - npx vite --host
+            Cypress
+                Testing suite. End-to-End especially.
+                Install (CommandPrompt):
+                    - cd <directory-path>
+                    - npm install cypress --save-dev
+                    - npx cypress open
+                Use
+                    https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test#Write-a-real-test
+            Faker
+                Creates fake user input/data for testing purposes.
+                Install (CommandPrompt):
+                    - cd <directory-path>
+                    - npm install @faker-js/faker --save-dev
+                Use
+                    https://v10.fakerjs.dev/guide/usage.html
+
+    Building a (C#) Back-End
+        Create a minimal API
+            We have to have a way to interface with our Database, this Api will allow us to do so.
+            Requirements:
+                - VSCode
+                - C# Dev Kit for Visual Studio Code
+                - .NET 10.0 SDK
+            Create (VSCode Terminal):
+                - cd <directory-path>
+                - dotnet new webapi -o <name_of_new_backend_folder>
+                - code -r <name_of_new_backend_folder>
+                - dotnet dev-certs https --trust
+                - dotnet add package Microsoft.EntityFrameworkCore.InMemory
+                - dotnet add package Scalar.AspNetCore
+            https://learn.microsoft.com/en-us/aspnet/core/tutorials/min-web-api?view=aspnetcore-10.0&tabs=visual-studio-code
+            Run:
+                - Click Run and Debug on sidebar
+                - C#
+                - Project.cs
+
+    Query Back-End via Front-End
+        Fetch in Javascript uses HTTP verb "GET".
+        Must use Backtick ` for template literals within strings.
+
+## MODULE 7: Backlog Refinement
+
+    Overview
+        Devs collaborate to flesh out User Stories within the backlog with the following to make future Sprint Planning sessions easier:
+            - Technical Steps
+            - Story Points
+            - Time Estimate
+            - Assignment
+            - User Acceptance Criteria
+
+## MODULE 8: TDD and Unit Testing
+
+    Building a Front-End (cont.)
+        Node Modules (cont.)
+            Jest
+                Testing suite. Unit testing especially.
+                (This is run in isolation, unlike the other node modules- there is no database or hosting involved.)
+                Install (CommandPrompt):
+                    - cd <directory-path>
+                    - npm install --save-dev jest
+                    - npx jest
+                Use:
+                    https://jestjs.io/docs/getting-started
+
+    A Further Note on Testing
+        Backend Unit Testing
+            Writing unit tests on the Back-End requires PHP knowledge I don't have.
+            Would be good to try this with something like MongoDB so I can see how querying a real database from Javascript looks like.
+        Integration Testing
+            Large scope testing.
+            Ex.
+                How two functions interact.
+                An application made of smaller-applications (called microservices).
+                How front-end and back-end interact (is this not just e2e testing again?).
+        Component Testing
+            Testing tailored to frontend frameworks
+            Testing isolated components.
+        CI/CD
+            Continuous Integration/Continuous Deployment
+            Automated testing.
+            Prevents regressions (older tests fail because of soemthing you added).
+        .env Files
+            Senstive files that contain variables we wouldn't want shared on Git.
+            Must be added to .gitignore
+            Might include an API key.
+
+## MODULE 9: Mid-Sprint Priority Shift
+
+    Priorities change, the sprint backlog is replaced, and the following User Stories are accomplished.
+        - HH-15 "As a potential buyer or seller, I want to be able to create an account"
+        - HH-17 "As a potential buyer or seller, I want to be able to be able to log into my account"
+        - HH-18 "As a potential buyer or seller, I want to be able to be able to log out of my account"
+        - HH-19 "As a potential seller, I only want to be able to create a product if I'm logged-in"
+
+## MODULE 10: Sprint Conclusion
+
+    Sprint Review:
+        - Demo work to key stakeholders.
+        - Determine next initiative to work on.
+
+    Sprint Retrospective
+        Ceremony to discuss the following:
+            - What went well?
+            - What problems arose?
+            - What solutions were attempted, and how effective were they?
+            - What improvements could be made going forward?
+        Generally this is structured around a diagram with sections for each of the prior listed topics. Participants then contribute sticky notes to each column of the diagram to share their thoughts.
+
+        Designed a four column chart in Canva to share my thoughts.
+
+## MODULE 11: Your Second Sprint
+
+    Complete the following User Stories:
+        - As a potential buyer of a product, I want to be able to purchase a product
+        - As a seller of a product, I want to be able to edit a product
+        - As a seller of a product, I want to be able to delete a product
+        - As a potential buyer, I only want to be able to purchase a product if I'm logged-in
+        - As a seller of a product, I want to be able to edit a product only when logged-in
+        - As a seller of a product, I don't want anyone else to be able to edit my products
+        - As a seller of a product, I want to be able to delete a product only when logged-in, and for this to also delete associated - purchases of the product
+        - As a seller of a product, I don't want anyone else to be able to delete my products
+        - As a seller of a product, I want to be able to view orders placed for my products when logged-in
+        - As a seller of a product, I do not want anyone else to be able to view orders placed for my products
+        - As a buyer of a product, I want to be able to view orders I have placed when logged-in
+        - As a buyer of a product, I do not want other customers to be able to view orders I have placed
+
+## Questions:
+    - Hosting in vite allows us to "Treat javascript as a module", what does this mean?
