@@ -354,11 +354,11 @@
         - As a potential buyer of a product, I want to be able to purchase a product
         - As a seller of a product, I want to be able to edit a product
         - As a seller of a product, I want to be able to delete a product
-        - As a potential buyer, I only want to be able to purchase a product if I'm logged-in
-        - As a seller of a product, I want to be able to edit a product only when logged-in
-        - As a seller of a product, I don't want anyone else to be able to edit my products
-        - As a seller of a product, I want to be able to delete a product only when logged-in, and for this to also delete associated - purchases of the product
-        - As a seller of a product, I don't want anyone else to be able to delete my products
+        - As a potential buyer, I only want to be able to purchase a product if I'm logged-in *
+        - As a seller of a product, I want to be able to edit a product only when logged-in *
+        - As a seller of a product, I don't want anyone else to be able to edit my products *
+        - As a seller of a product, I want to be able to delete a product only when logged-in, and for this to also delete associated - purchases of the product*
+        - As a seller of a product, I don't want anyone else to be able to delete my products*
         - As a seller of a product, I want to be able to view orders placed for my products when logged-in
         - As a seller of a product, I do not want anyone else to be able to view orders placed for my products
         - As a buyer of a product, I want to be able to view orders I have placed when logged-in
