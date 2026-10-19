@@ -9,12 +9,15 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 
 async function printArrayToProductsList(arrayOfProducts) {
 	productsList.innerHTML = "";
-	arrayOfProducts.forEach((product) => {
+	for( let i = 0; i<arrayOfProducts.length; i++ ) {
+		const product = arrayOfProducts[i];
 		const newLi = document.createElement("li");
 		const editButtonDiv = document.createElement("div");
 		const productInfoDiv = document.createElement("div");
 		const productInfoP = document.createElement("p");
 		const purchaseButtonDiv = document.createElement("div");
+		console.log("product");
+		console.log(product);
 		productInfoP.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
 
 		productInfoDiv.appendChild(productInfoP);
@@ -45,9 +48,8 @@ async function printArrayToProductsList(arrayOfProducts) {
 		}
 
 		productsList.appendChild(newLi);
-	});
+	}
 }
-
 //CREATE NEW PRODUCT LOGIC
 
 const createNewProductDiv = document.getElementById("createNewProductDiv");
@@ -296,6 +298,9 @@ function addEditButton(elementToParentButton, elementToParentForm, productObject
 	newForm.appendChild(newInventoryInput);
 	newForm.appendChild(newButton);
 
+	newNameInput.style.width = "10rem";
+	newPriceInput.style.width = "5rem";
+	newInventoryInput.style.width = "5rem";
 
 	const motherButton = document.createElement("button");
 	motherButton.textContent = "Edit";
@@ -316,8 +321,8 @@ function addEditButton(elementToParentButton, elementToParentForm, productObject
 			`${productObject.name} updated!`;
 		const updatedProductObject = productObject;
 		updatedProductObject.name = newNameInput.value;
-		updatedProductObject.price = newPriceInput.value;
-		updatedProductObject.inventory = newInventoryInput.value;
+		updatedProductObject.price = parseInt(newPriceInput.value);
+		updatedProductObject.inventory = parseInt(newInventoryInput.value);
 
 		updateProductToDatabase(updatedProductObject);
 
