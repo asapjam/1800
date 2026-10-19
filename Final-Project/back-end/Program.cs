@@ -7,6 +7,7 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ProductDb>(opt => opt.UseInMemoryDatabase("ProductList"));
 builder.Services.AddDbContext<UserDb>(opt => opt.UseInMemoryDatabase("UserList"));
+builder.Services.AddDbContext<OrderDb>(opt => opt.UseInMemoryDatabase("OrderList"));
 builder.Services.AddOpenApi();
 builder.Services.AddCors(options =>
 {
@@ -42,6 +43,23 @@ app.MapPost("/productsAPI", async (Product new_product, ProductDb db) =>
     return Results.Created($"/productsAPI/{new_product.id}", new_product);
 });
 
+app.MapPut("/productsAPI/{id}", async (int id, Product updatedProductData, ProductDb db) =>
+{
+    var currentProductData = await db.Products.FindAsync(id);
+
+    if (currentProductData is null) return Results.NotFound();
+
+    currentProductData.name = updatedProductData.name;
+    currentProductData.price = updatedProductData.price;
+    currentProductData.inventory = updatedProductData.inventory;
+    currentProductData.rating = updatedProductData.rating;
+    currentProductData.seller_id = updatedProductData.seller_id;
+
+    await db.SaveChangesAsync();
+
+    return Results.NoContent();
+});
+
 //USER DATABASE GET/POST
 
 app.MapGet("/usersAPI", async (UserDb db) =>
@@ -61,6 +79,20 @@ app.MapPost("/usersAPI", async (User new_user, UserDb db) =>
 
     return Results.Created($"/usersAPI/{new_user.id}", new_user);
 });
+
+//ORDER DATABASE GET/POST
+
+app.MapGet("/ordersAPI", async (OrderDb db) =>
+    await db.Orders.ToListAsync());
+
+app.MapPost("/ordersAPI", async (Order new_order, OrderDb db) =>
+{
+    db.Orders.Add(new_order);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/ordersAPI/{new_order.id}", new_order);
+});
+
 
 //WHO CAN REQUEST DATA?
 
