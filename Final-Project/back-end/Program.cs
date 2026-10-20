@@ -35,6 +35,12 @@ app.MapGet("/", () => "Add /productsAPI to the URL Einstein, /usersAPI Einstein 
 app.MapGet("/productsAPI", async (ProductDb db) =>
     await db.Products.ToListAsync());
 
+app.MapGet("/productsAPI/{id}", async (int id, ProductDb db) =>
+    await db.Products.FindAsync(id)
+        is Product product
+            ? Results.Ok(product)
+            : Results.NotFound());
+
 app.MapPost("/productsAPI", async (Product new_product, ProductDb db) =>
 {
     db.Products.Add(new_product);
@@ -60,12 +66,23 @@ app.MapPut("/productsAPI/{id}", async (int id, Product updatedProductData, Produ
     return Results.NoContent();
 });
 
+app.MapDelete("/productsAPI/{id}", async (int id, ProductDb db) =>
+{
+    if (await db.Products.FindAsync(id) is Product product)
+    {
+        db.Products.Remove(product);
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+
+    return Results.NotFound();
+});
+
 //USER DATABASE GET/POST
 
 app.MapGet("/usersAPI", async (UserDb db) =>
     await db.Users.ToListAsync());
 
-    //get specific user? not sure if this works
 app.MapGet("/usersAPI/{id}", async (int id, UserDb db) =>
     await db.Users.FindAsync(id)
         is User user
@@ -85,6 +102,12 @@ app.MapPost("/usersAPI", async (User new_user, UserDb db) =>
 app.MapGet("/ordersAPI", async (OrderDb db) =>
     await db.Orders.ToListAsync());
 
+app.MapGet("/ordersAPI/{id}", async (int id, OrderDb db) =>
+    await db.Orders.FindAsync(id)
+        is Order order
+            ? Results.Ok(order)
+            : Results.NotFound());
+
 app.MapPost("/ordersAPI", async (Order new_order, OrderDb db) =>
 {
     db.Orders.Add(new_order);
@@ -92,6 +115,19 @@ app.MapPost("/ordersAPI", async (Order new_order, OrderDb db) =>
 
     return Results.Created($"/ordersAPI/{new_order.id}", new_order);
 });
+
+app.MapDelete("/ordersAPI/{id}", async (int id, OrderDb db) =>
+{
+    if (await db.Orders.FindAsync(id) is Order order)
+    {
+        db.Orders.Remove(order);
+        await db.SaveChangesAsync();
+        return Results.NoContent();
+    }
+
+    return Results.NotFound();
+});
+
 
 
 //WHO CAN REQUEST DATA?
