@@ -8,6 +8,8 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 //PRINT PRODUCT LIST TO SCREEN
 
 async function printArrayToProductsList(arrayOfProducts) {
+	console.log("productsJson");
+	console.log(productsJson);
 	productsList.innerHTML = "";
 	for (let i = 0; i < arrayOfProducts.length; i++) {
 		const product = arrayOfProducts[i];
@@ -45,6 +47,7 @@ async function printArrayToProductsList(arrayOfProducts) {
 		if (product.seller_id == currentUser()) {
 			addEditButton(editButtonDiv, productInfoDiv, product);
 		}
+		addDeleteButton(editButtonDiv, product);
 
 		productsList.appendChild(newLi);
 	}
@@ -132,7 +135,6 @@ async function seedIfEmptyDatabase() {
 // POST DATA TO DATABASE LOGIC
 
 async function postProductToDatabase(new_product) {
-	console.log(JSON.stringify(new_product));
 	await fetch("http://localhost:5167/productsAPI", {
 		method: "post",
 		headers: {
@@ -143,7 +145,6 @@ async function postProductToDatabase(new_product) {
 }
 
 async function postOrderToDatabase(new_order) {
-	console.log(JSON.stringify(new_order));
 	await fetch("http://localhost:5167/ordersAPI", {
 		method: "post",
 		headers: {
@@ -156,7 +157,6 @@ async function postOrderToDatabase(new_order) {
 // UPDATE EXISTING DATABASE ENTRY LOGIC
 
 async function updateProductToDatabase(updated_product) {
-	console.log(JSON.stringify(updated_product));
 	await fetch(`http://localhost:5167/productsAPI/${updated_product.id}`, {
 		method: "put",
 		headers: {
@@ -164,6 +164,39 @@ async function updateProductToDatabase(updated_product) {
 		},
 		body: JSON.stringify(updated_product),
 	});
+}
+
+// DELETE EXISTING DATABASE ENTRY LOGIC
+
+async function deleteProductFromDatabase(deleted_product) {
+	const response = await fetch(
+		`http://localhost:5167/productsAPI/${deleted_product.id}`,
+		{
+			method: "delete",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(deleted_product),
+		},
+	);
+	console.log(response.status);
+}
+
+async function deleteRelatedOrdersFromDatabase(deleted_product) {
+	const getResponse = await fetch("http://localhost:5167/ordersAPI");
+	const ordersJson = await getResponse.json();
+
+	for (let i = 0; i < ordersJson.length; i++) {
+		if (ordersJson[i].product_id == deleted_product.id) {
+			await fetch(`http://localhost:5167/ordersAPI/${ordersJson[i].id}`, {
+				method: "delete",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(ordersJson[i]),
+			});
+		}
+	}
 }
 
 // DUPLICATE SESSION MANAGEMENT LOGIC... SHOULD BE PART OF UTIL...
@@ -322,6 +355,28 @@ function addEditButton(elementToParentButton, elementToParentForm, productObject
 		printArrayToProductsList(productsJson);
 		newForm.style.display = "none";
 		motherButton.style.display = "block";
+	});
+}
+
+// DELETE PRODUCT LOGIC
+
+function addDeleteButton(elementToParentButton, productObject) {
+	const newButton = document.createElement("button");
+	newButton.textContent = "Delete";
+	newButton.id = "updateButton";
+
+	elementToParentButton.appendChild(newButton);
+
+	newButton.addEventListener("click", async (e) => {
+		e.preventDefault();
+		document.getElementById("pageFeedback").textContent =
+			`${productObject.name} deleted!`;
+
+		await deleteProductFromDatabase(productObject);
+		await deleteRelatedOrdersFromDatabase(productObject);
+		const newResponse = await fetch("http://localhost:5167/productsAPI");
+		const newResponseJson = await newResponse.json();
+		printArrayToProductsList(newResponseJson);
 	});
 }
 
