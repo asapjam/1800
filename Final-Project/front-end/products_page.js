@@ -8,8 +8,6 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 //PRINT PRODUCT LIST TO SCREEN
 
 async function printArrayToProductsList(arrayOfProducts) {
-	console.log("productsJson");
-	console.log(productsJson);
 	productsList.innerHTML = "";
 	for (let i = 0; i < arrayOfProducts.length; i++) {
 		const product = arrayOfProducts[i];
@@ -267,6 +265,7 @@ function createAddToCartButton(elementToParentButton, productObject) {
 		updatedProductObject.inventory -= newQuantityInput.value;
 
 		const newOrder = {
+			quantity: newQuantityInput.value,
 			product_id: productObject.id,
 			buyer_id: currentUser(),
 		};

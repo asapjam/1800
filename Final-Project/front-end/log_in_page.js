@@ -162,6 +162,31 @@ function removeSessionIdLocally(sessionId) {
 
 if (userIsLoggedIn()) {
 	createLogOutButton();
+	getOrderHistory(sessionId);
 	logInContainer.style.display = "none";
 	createNewUserContainer.style.display = "none";
+}
+
+// ORDER HISTORY
+async function getOrderHistory(userId){
+	if(!sessionId){return};
+	const response = await fetch("http://localhost:5167/ordersAPI");
+	const ordersJson = await response.json();
+
+	const orderDiv = document.getElementById("orderHistory");
+	const orderH3 = document.createElement("h3");
+	orderH3.innerText = "Order History:"
+	const orderUl = document.createElement("ul");
+
+	orderDiv.appendChild(orderH3);
+	orderDiv.appendChild(orderUl);
+
+	for( let i = 0; i < ordersJson.length; i++){
+		if (ordersJson[i].buyer_id == userId){
+			const orderLi = document.createElement("li");
+			const product = await (await fetch(`http://localhost:5167/productsAPI/${ordersJson[i].product_id}`)).json();
+			orderLi.innerText = `Order #${ordersJson[i].id}: for ${ordersJson[i].quantity} of ${product.name}.`
+			orderUl.appendChild(orderLi);
+		}
+	}
 }
