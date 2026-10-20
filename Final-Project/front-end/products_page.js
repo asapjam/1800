@@ -7,41 +7,52 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 
 //PRINT PRODUCT LIST TO SCREEN
 
-function printArrayToProductsList(arrayOfProducts) {
+async function printArrayToProductsList(arrayOfProducts) {
 	productsList.innerHTML = "";
-	arrayOfProducts.forEach((product) => {
+	for (let i = 0; i < arrayOfProducts.length; i++) {
+		const product = arrayOfProducts[i];
 		const newLi = document.createElement("li");
-		const newDiv1 = document.createElement("div");
-		const newP1 = document.createElement("p");
-		const newDiv2 = document.createElement("div");
-		newP1.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
+		const editButtonDiv = document.createElement("div");
+		const productInfoDiv = document.createElement("div");
+		const productInfoP = document.createElement("p");
+		const purchaseButtonDiv = document.createElement("div");
+		console.log("product");
+		console.log(product);
+		productInfoP.innerText = `Name: ${product.name}, Price: $${product.price.toFixed(2)}, Inventory: ${product.inventory}`;
 
-		newDiv1.appendChild(newP1);
-		createAddToCartButton(newDiv2, product);
-		newLi.appendChild(newDiv1);
+		productInfoDiv.appendChild(productInfoP);
+		newLi.appendChild(editButtonDiv);
+		newLi.appendChild(productInfoDiv);
+		newLi.appendChild(purchaseButtonDiv);
 
-		newP1.style.margin = "0.5rem";
-		newDiv2.style.margin = "0.5rem";
+		productsList.style.margin = "0";
+		productsList.style.padding = "0";
 
-		newDiv1.style.width = "30rem";
-		newDiv2.style.width = "60rem";
+		productInfoP.style.margin = "0";
+		purchaseButtonDiv.style.margin = "0";
+
+		editButtonDiv.style.width = "10rem";
+		productInfoDiv.style.width = "80rem";
+		purchaseButtonDiv.style.width = "60rem";
 
 		newLi.style.display = "flex";
+		newLi.style.min_height = "3rem";
+		newLi.style.alignItems = "center";
 
-		if (userIsLoggedIn()) {
-			newLi.appendChild(newDiv2);
+		if (userIsLoggedIn() && product.seller_id != userIsLoggedIn()) {
+			createAddToCartButton(purchaseButtonDiv, product);
+		}
+		if (product.seller_id == userIsLoggedIn()) {
+			addEditButton(editButtonDiv, productInfoDiv, product);
 		}
 
 		productsList.appendChild(newLi);
-	});
+	}
 }
-
 //CREATE NEW PRODUCT LOGIC
 
 const createNewProductDiv = document.getElementById("createNewProductDiv");
-const createNewProductButton = document.getElementById(
-	"createNewProductButton",
-);
+const createNewProductButton = document.getElementById("createNewProductButton");
 
 createNewProductButton.addEventListener("click", async (e) => {
 	createNewProductDiv.style.visibility = "visible";
@@ -53,8 +64,9 @@ const form = document.getElementById("createNewProductForm");
 form.addEventListener("submit", async (e) => {
 	e.preventDefault();
 	const formData = new FormData(form);
-	const new_product = Object.fromEntries(formData);
-	postProductToDatabase(new_product);
+	let newProduct = Object.fromEntries(formData);
+	newProduct.seller_id = currentUser();
+	postProductToDatabase(newProduct);
 	giveUserFeedback();
 	// location.reload();
 });
@@ -166,6 +178,10 @@ function userIsLoggedIn() {
 	}
 }
 
+function currentUser() {
+	return sessionStorage.getItem("sessionId");
+}
+
 function createProductRequiresLogin() {
 	if (userIsLoggedIn()) {
 		createNewProductButton.style.display = "block";
@@ -173,8 +189,6 @@ function createProductRequiresLogin() {
 }
 
 // PURCHASE PRODUCT LOGIC
-
-const cart = [];
 
 function createAddToCartButton(elementToParentButton, productObject) {
 	if (productObject.inventory <= 0) {
@@ -205,10 +219,7 @@ function createAddToCartButton(elementToParentButton, productObject) {
 
 	//Event listener has to come after everything else?... why....
 	newForm.addEventListener("input", async (e) => {
-		if (
-			newQuantityInput.value <= 0 ||
-			newQuantityInput.value > productObject.inventory
-		) {
+		if (newQuantityInput.value <= 0 || newQuantityInput.value > productObject.inventory) {
 			newButton.disabled = true;
 		} else {
 			newButton.disabled = false;
@@ -223,8 +234,8 @@ function createAddToCartButton(elementToParentButton, productObject) {
 		updatedProductObject.inventory -= newQuantityInput.value;
 
 		const newOrder = {
-			product_id : productObject.id,
-			buyer_id: sessionStorage.getItem("sessionId")
+			product_id: productObject.id,
+			buyer_id: currentUser(),
 		};
 
 		updateProductToDatabase(updatedProductObject);
@@ -232,6 +243,85 @@ function createAddToCartButton(elementToParentButton, productObject) {
 
 		printArrayToProductsList(productsJson);
 		newForm.style.display = "none";
+	});
+}
+
+// UPDATE PRODUCT LOGIC
+
+function addEditButton(elementToParentButton, elementToParentForm, productObject) {
+	const newForm = document.createElement("form");
+	newForm.style.display = "none";
+
+	const newNameLabel = document.createElement("label");
+	newNameLabel.htmlFor = "new_name";
+	newNameLabel.textContent = "Name:";
+
+	const newNameInput = document.createElement("input");
+	newNameInput.defaultValue = productObject.name;
+	newNameInput.name = "new_name";
+	newNameInput.type = "text";
+
+	const newPriceLabel = document.createElement("label");
+	newPriceLabel.htmlFor = "new_price";
+	newPriceLabel.textContent = "Price:";
+
+	const newPriceInput = document.createElement("input");
+	newPriceInput.defaultValue = productObject.price;
+	newPriceInput.name = "new_price";
+	newPriceInput.type = "number";
+
+	const newInventoryLabel = document.createElement("label");
+	newInventoryLabel.htmlFor = "new_inventory";
+	newInventoryLabel.textContent = "Inventory:";
+
+	const newInventoryInput = document.createElement("input");
+	newInventoryInput.defaultValue = productObject.inventory;
+	newInventoryInput.name = "new_inventory";
+	newInventoryInput.type = "number";
+
+	const newButton = document.createElement("button");
+	newButton.textContent = "Update";
+	newButton.id = "updateButton";
+
+	newForm.appendChild(newNameLabel);
+	newForm.appendChild(newNameInput);
+	newForm.appendChild(newPriceLabel);
+	newForm.appendChild(newPriceInput);
+	newForm.appendChild(newInventoryLabel);
+	newForm.appendChild(newInventoryInput);
+	newForm.appendChild(newButton);
+
+	newNameInput.style.width = "10rem";
+	newPriceInput.style.width = "5rem";
+	newInventoryInput.style.width = "5rem";
+
+	const motherButton = document.createElement("button");
+	motherButton.textContent = "Edit";
+	motherButton.addEventListener("click", async (e) => {
+		e.preventDefault();
+		motherButton.style.display = "none";
+		newForm.style.display = "block";
+		elementToParentForm.innerHTML = "";
+		elementToParentForm.appendChild(newForm);
+	});
+
+	// elementToParentForm.appendChild(newForm);
+	elementToParentButton.appendChild(motherButton);
+
+	newForm.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		document.getElementById("pageFeedback").textContent =
+			`${productObject.name} updated!`;
+		const updatedProductObject = productObject;
+		updatedProductObject.name = newNameInput.value;
+		updatedProductObject.price = parseInt(newPriceInput.value);
+		updatedProductObject.inventory = parseInt(newInventoryInput.value);
+
+		updateProductToDatabase(updatedProductObject);
+
+		printArrayToProductsList(productsJson);
+		newForm.style.display = "none";
+		motherButton.style.display = "block";
 	});
 }
 
