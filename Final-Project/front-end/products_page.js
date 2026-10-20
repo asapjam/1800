@@ -46,8 +46,8 @@ async function printArrayToProductsList(arrayOfProducts) {
 		}
 		if (product.seller_id == currentUser()) {
 			addEditButton(editButtonDiv, productInfoDiv, product);
+			addDeleteButton(editButtonDiv, product);
 		}
-		addDeleteButton(editButtonDiv, product);
 
 		productsList.appendChild(newLi);
 	}
