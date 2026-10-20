@@ -9,7 +9,7 @@ const productsList = document.querySelector('ul[name = "products_list"]');
 
 async function printArrayToProductsList(arrayOfProducts) {
 	productsList.innerHTML = "";
-	for( let i = 0; i<arrayOfProducts.length; i++ ) {
+	for (let i = 0; i < arrayOfProducts.length; i++) {
 		const product = arrayOfProducts[i];
 		const newLi = document.createElement("li");
 		const editButtonDiv = document.createElement("div");
@@ -31,8 +31,8 @@ async function printArrayToProductsList(arrayOfProducts) {
 		productInfoP.style.margin = "0";
 		purchaseButtonDiv.style.margin = "0";
 
-		editButtonDiv.style.width = "5rem";
-		productInfoDiv.style.width = "30rem";
+		editButtonDiv.style.width = "10rem";
+		productInfoDiv.style.width = "80rem";
 		purchaseButtonDiv.style.width = "60rem";
 
 		newLi.style.display = "flex";
@@ -40,10 +40,9 @@ async function printArrayToProductsList(arrayOfProducts) {
 		newLi.style.alignItems = "center";
 
 		if (userIsLoggedIn() && product.seller_id != userIsLoggedIn()) {
-			createAddToCartButton(purchaseButtonDiv, product)
-			
+			createAddToCartButton(purchaseButtonDiv, product);
 		}
-		if (product.seller_id == userIsLoggedIn()){
+		if (product.seller_id == userIsLoggedIn()) {
 			addEditButton(editButtonDiv, productInfoDiv, product);
 		}
 
@@ -53,9 +52,7 @@ async function printArrayToProductsList(arrayOfProducts) {
 //CREATE NEW PRODUCT LOGIC
 
 const createNewProductDiv = document.getElementById("createNewProductDiv");
-const createNewProductButton = document.getElementById(
-	"createNewProductButton",
-);
+const createNewProductButton = document.getElementById("createNewProductButton");
 
 createNewProductButton.addEventListener("click", async (e) => {
 	createNewProductDiv.style.visibility = "visible";
@@ -181,8 +178,8 @@ function userIsLoggedIn() {
 	}
 }
 
-function currentUser(){
-	return sessionStorage.getItem("sessionId")
+function currentUser() {
+	return sessionStorage.getItem("sessionId");
 }
 
 function createProductRequiresLogin() {
@@ -222,10 +219,7 @@ function createAddToCartButton(elementToParentButton, productObject) {
 
 	//Event listener has to come after everything else?... why....
 	newForm.addEventListener("input", async (e) => {
-		if (
-			newQuantityInput.value <= 0 ||
-			newQuantityInput.value > productObject.inventory
-		) {
+		if (newQuantityInput.value <= 0 || newQuantityInput.value > productObject.inventory) {
 			newButton.disabled = true;
 		} else {
 			newButton.disabled = false;
@@ -254,8 +248,7 @@ function createAddToCartButton(elementToParentButton, productObject) {
 
 // UPDATE PRODUCT LOGIC
 
-function addEditButton(elementToParentButton, elementToParentForm, productObject){
-
+function addEditButton(elementToParentButton, elementToParentForm, productObject) {
 	const newForm = document.createElement("form");
 	newForm.style.display = "none";
 
@@ -308,7 +301,7 @@ function addEditButton(elementToParentButton, elementToParentForm, productObject
 		e.preventDefault();
 		motherButton.style.display = "none";
 		newForm.style.display = "block";
-		elementToParentForm.innerHTML ="";
+		elementToParentForm.innerHTML = "";
 		elementToParentForm.appendChild(newForm);
 	});
 
