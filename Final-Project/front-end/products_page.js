@@ -39,10 +39,10 @@ async function printArrayToProductsList(arrayOfProducts) {
 		newLi.style.min_height = "3rem";
 		newLi.style.alignItems = "center";
 
-		if (userIsLoggedIn() && product.seller_id != userIsLoggedIn()) {
+		if (userIsLoggedIn() && product.seller_id != currentUser()) {
 			createAddToCartButton(purchaseButtonDiv, product);
 		}
-		if (product.seller_id == userIsLoggedIn()) {
+		if (product.seller_id == currentUser()) {
 			addEditButton(editButtonDiv, productInfoDiv, product);
 		}
 
